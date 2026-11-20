@@ -43,29 +43,94 @@ Resize the frame and rotate it using OpenCV functions, then display the processe
 ## 💻 Program
 
 ### Developed By:
-**Name:** ____________________________  
+**Name:** Keerthana P
 
 ### Register No:
-____________________________  
+212225240071
 
----
+```PY
+import cv2
+import matplotlib.pyplot as plt
+from IPython.display import clear_output
+import time
+cap = cv2.VideoCapture(0)
+ret, frame = cap.read()
+if ret:
+    cv2.imwrite("webcam_image.jpg", frame)
+cap.release()
+import cv2
+import matplotlib.pyplot as plt
+captured_image = cv2.imread("webcam_image.jpg")
+plt.imshow(captured_image[:,:,::-1])
+plt.title('Captured Frame')
+plt.axis('off')
+plt.show()
+import time
+from IPython.display import clear_output
+
+cap = cv2.VideoCapture(0)
+
+for i in range(50):
+    ret, frame = cap.read()
+
+    if not ret:
+        break
+
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.axis('off')
+    plt.show()
+
+    time.sleep(0.05)
+cap = cv2.VideoCapture(0)
+
+for i in range(50):
+    ret, frame = cap.read()
+    if not ret:
+        break
+    resized_frame = cv2.resize(frame, (100, 150))  # Resize to 320x240
+    frame_rgb = cv2.cvtColor(resized_frame, cv2.COLOR_BGR2RGB)
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.axis('off')
+    plt.show()
+    time.sleep(0.05)
+
+cap.release()
+cap = cv2.VideoCapture(0)
+
+for i in range(50):
+    ret, frame = cap.read()
+    if not ret:
+        break
+    rotated_frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+    frame_rgb = cv2.cvtColor(rotated_frame, cv2.COLOR_BGR2RGB)
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.axis('off')
+    plt.show()
+    time.sleep(0.05)
+
+cap.release()
+```
 
 ## Output
 
 ### i) Write the frame as JPG image
-Captured image is saved as `captured_image.jpg`
+<img width="611" height="460" alt="Screenshot 2026-11-20 154218" src="https://github.com/user-attachments/assets/a92113bd-28d7-4caa-9e82-d5e8e1ef2e82" />
 
 ### ii) Display the video
-Live webcam video is displayed
+<img width="613" height="461" alt="Screenshot 2026-11-20 154232" src="https://github.com/user-attachments/assets/d7c2074d-d642-4a5e-a032-b78442feb30e" />
+
 
 ### iii) Display the video by resizing the window
-Video is shown in resized resolution (640 × 480)
+<img width="308" height="462" alt="Screenshot 2026-11-20 154246" src="https://github.com/user-attachments/assets/81d6424b-05a4-4963-9229-58af93cacb59" />
+
 
 ### iv) Rotate and display the video
-Video is displayed after rotation (90° clockwise)
+<img width="343" height="465" alt="Screenshot 2026-11-20 154259" src="https://github.com/user-attachments/assets/0b1d92a9-3258-4cfd-a053-c58f5002cbe9" />
 
----
-
-## Result
 
 Thus, the image is successfully captured from the webcam and various video processing operations such as saving, displaying, resizing, and rotating are performed using OpenCV.
